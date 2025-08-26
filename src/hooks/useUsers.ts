@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import type { User } from "../types/user.types";
-import type { FilterState } from "../types/filter.types";
+import type { User } from "@/types/user.types";
+import type { FilterState } from "@/types/filter.types";
 
 export function useUsers() {
   const [users, setUsers] = useState<User[]>([]);

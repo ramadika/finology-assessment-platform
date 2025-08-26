@@ -11,5 +11,4 @@ export interface FilterProps {
   label: string;
   placeholder: string;
   icon: React.ReactNode;
-  id: string;
 }

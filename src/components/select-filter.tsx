@@ -1,4 +1,12 @@
-import type { FilterProps } from "../types/filter.types";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import type { FilterProps } from "@/types/filter.types";
 
 export default function Index({
   value,
@@ -6,32 +14,28 @@ export default function Index({
   label,
   placeholder,
   icon,
-  id,
   onChange,
 }: FilterProps) {
   return (
-    <div className="w-full">
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-gray-700 mb-2"
-      >
-        {label}
-      </label>
+    <div className="space-y-2">
+      <Label>{label}</Label>
       <div className="relative">
-        {icon}
-        <select
-          id={id}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-2xl focus:ring-2 focus:ring-[#284D8E] focus:border-transparent appearance-none bg-white"
-        >
-          <option value="">{placeholder}</option>
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+        <div className="absolute left-3 top-1/2 transform -translate-y-1/2 z-10 pointer-events-none">
+          {icon}
+        </div>
+        <Select value={value} onValueChange={onChange}>
+          <SelectTrigger className="pl-10 cursor-pointer w-full rounded-2xl">
+            <SelectValue placeholder={placeholder} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={placeholder}>{placeholder}</SelectItem>
+            {options.map((option) => (
+              <SelectItem key={option} value={option}>
+                {option}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );
