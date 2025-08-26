@@ -1,5 +1,4 @@
 import {
-  Search,
   MapPin,
   Building2,
   Phone,
@@ -9,9 +8,11 @@ import {
   Loader2,
   X,
 } from "lucide-react";
-import { useUsers } from "../../hooks/useUsers";
+import { useUsers } from "../hooks/useUsers";
+import InputSearch from "../components/input-search";
+import SelectFilter from "../components/select-filter";
 
-const UserDirectory = () => {
+export default function Index() {
   const {
     loading,
     error,
@@ -76,79 +77,38 @@ const UserDirectory = () => {
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
             {/* Search Input */}
-            <div className="md:col-span-2">
-              <label
-                htmlFor="search"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Search by name
-              </label>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  id="search"
-                  type="text"
-                  placeholder="Type to search users..."
-                  value={filters.searchTerm}
-                  onChange={(e) => updateFilter("searchTerm", e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                />
-              </div>
-            </div>
+            <InputSearch
+              value={filters.searchTerm}
+              onChange={(value) => updateFilter("searchTerm", value)}
+              placeholder="Type to search users..."
+              label="Search by name"
+            />
 
             {/* City Filter */}
-            <div>
-              <label
-                htmlFor="city"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Filter by city
-              </label>
-              <div className="relative">
+            <SelectFilter
+              id="city"
+              value={filters.selectedCity}
+              onChange={(value) => updateFilter("selectedCity", value)}
+              options={cities}
+              label="Filter by city"
+              placeholder="All Cities"
+              icon={
                 <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <select
-                  id="city"
-                  value={filters.selectedCity}
-                  onChange={(e) => updateFilter("selectedCity", e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent appearance-none bg-white"
-                >
-                  <option value="">All Cities</option>
-                  {cities.map((city) => (
-                    <option key={city} value={city}>
-                      {city}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
+              }
+            />
 
             {/* Company Filter */}
-            <div>
-              <label
-                htmlFor="company"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Filter by company
-              </label>
-              <div className="relative">
+            <SelectFilter
+              id="company"
+              value={filters.selectedCompany}
+              onChange={(value) => updateFilter("selectedCompany", value)}
+              options={companies}
+              label="Filter by company"
+              placeholder="All Companies"
+              icon={
                 <Building2 className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <select
-                  id="company"
-                  value={filters.selectedCompany}
-                  onChange={(e) =>
-                    updateFilter("selectedCompany", e.target.value)
-                  }
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent appearance-none bg-white"
-                >
-                  <option value="">All Companies</option>
-                  {companies.map((company) => (
-                    <option key={company} value={company}>
-                      {company}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
+              }
+            />
           </div>
 
           {/* Clear Filters Button */}
@@ -265,6 +225,4 @@ const UserDirectory = () => {
       </div>
     </div>
   );
-};
-
-export default UserDirectory;
+}
