@@ -38,17 +38,17 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="px-16 py-20 flex flex-col gap-8">
+      <div className="px-16 py-20 flex flex-col gap-8 max-lg:px-8 max-md:py-16">
         {/* Header */}
         <PageHeader
           title="User Directory"
           subHeader="Browse and search through our user database"
         />
 
-        <div className="bg-white rounded-xl shadow-md p-10 flex flex-col gap-6">
+        <div className="bg-white rounded-xl shadow-md p-10 flex flex-col gap-6 max-md:p-6">
           {/* Filters Section */}
-          <div className="flex justify-between items-center gap-2">
-            <div className="flex items-end gap-6 w-6/12">
+          <div className="flex justify-between items-center gap-2 max-lg:flex-col max-md:justify-center max-lg:gap-6">
+            <div className="flex items-end gap-6 w-6/12 max-lg:w-full max-lg:order-2 max-md:flex-col">
               {/* City Filter */}
               <div className="w-full">
                 <SelectFilter
@@ -89,7 +89,7 @@ export default function Index() {
             </div>
 
             {/* Search Input */}
-            <div className="w-4/12">
+            <div className="w-4/12 max-lg:w-full max-lg:order-1">
               <InputSearch
                 value={filters.searchTerm}
                 onChange={(value) => updateFilter("searchTerm", value)}
