@@ -17,7 +17,6 @@ export function useUsers() {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        setError("");
         const response = await fetch(
           "https://jsonplaceholder.typicode.com/users"
         );
@@ -53,7 +52,7 @@ export function useUsers() {
     };
   }, [users]);
 
-  // Filter users based on current filters
+  // Get users based on current filters
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
       const matchesSearch = user.name
