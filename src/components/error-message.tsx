@@ -13,7 +13,7 @@ export default function Index({ message }: ErrorProps) {
           <p className="text-gray-600 mb-4">{message}</p>
           <button
             onClick={() => window.location.reload()}
-            className="bg-[#284D8E] text-white px-4 py-2 rounded-md hover:opacity-60 transition duration-300"
+            className="bg-[#284D8E] text-white px-4 py-2 rounded-md hover:opacity-60 transition duration-300 cursor-pointer"
           >
             Try Again
           </button>
