@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { MapPin, Building2, Users, X } from "lucide-react";
-import AOS from "aos";
 import { Button } from "@/components/ui/button";
 import { useUsers } from "@/hooks/useUsers";
 import InputSearch from "@/components/input-search";
@@ -23,10 +21,6 @@ export default function Index() {
     updateFilter,
     clearAllFilters,
   } = useUsers();
-
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -123,11 +117,7 @@ export default function Index() {
               </p>
             </div>
           ) : (
-            <div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-              data-aos="fade-up"
-              data-aos-duration="2000"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredUsers.map((user) => (
                 <CardProfile
                   key={user.id}
